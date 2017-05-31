@@ -10,6 +10,7 @@ import java.util.List;
 
 import com.training.dao.CustomerDAO;
 import com.training.model.Customer;
+import com.training.model.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class CustomerRestController {
 
+    CustomerRepository customerRepository;
     @Autowired
     private CustomerDAO customerDAO;
 
@@ -52,7 +54,7 @@ public class CustomerRestController {
         return new ResponseEntity(customer, HttpStatus.OK);
     }
 
-    @DeleteMapping("/customers/{id}")
+    @DeleteMapping("/customers/delete{id}")
     public ResponseEntity deleteCustomer(@PathVariable Long id) {
 
         if (!customerDAO.delete(id)) {
