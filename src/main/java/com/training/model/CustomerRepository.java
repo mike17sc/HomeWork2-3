@@ -1,4 +1,4 @@
-package com.training.spring.model;
+package com.training.model;
 /**
  * Created by Mschneider on 29-05-17.
  */

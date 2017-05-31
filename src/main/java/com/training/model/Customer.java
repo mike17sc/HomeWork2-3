@@ -1,4 +1,4 @@
-package com.training.spring.model;
+package com.training.model;
 
 import java.util.Date;
 import javax.persistence.*;
