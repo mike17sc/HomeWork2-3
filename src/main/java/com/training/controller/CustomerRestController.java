@@ -54,7 +54,7 @@ public class CustomerRestController {
         return new ResponseEntity(customer, HttpStatus.OK);
     }
 
-    @DeleteMapping("/customers/delete{id}")
+    @DeleteMapping("/customers/delete/{id}")
     public ResponseEntity deleteCustomer(@PathVariable Long id) {
 
         if (!customerDAO.delete(id)) {
