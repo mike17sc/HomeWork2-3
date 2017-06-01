@@ -28,7 +28,6 @@ public class DatabaseSeeder implements CommandLineRunner {
     @Override
     public void run(String... strings) throws Exception {
         List<Customer> customers=new ArrayList<>();
-        LocalDate birthday=LocalDate.of(1960, Month.JANUARY,1);
         customers.add(new Customer(1,"Mike","Schneider","mike17sc@hotmail.com","0470104195"));
         customers.add(new Customer(2,"Catherine","Berki","catherine@hotmail.com","0470414754"));
         customers.add(new Customer(3,"Seb","Godart","Seb@hotmail.com","0470104195"));
