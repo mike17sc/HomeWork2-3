@@ -5,12 +5,10 @@ package com.training.controller;
  */
 
 import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
 
-import com.training.dao.CustomerDAO;
+import com.training.service.CustomerServiceImpl;
 import com.training.model.Customer;
-import com.training.model.CustomerRepository;
+import com.training.dao.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,18 +25,18 @@ public class CustomerRestController {
 
     CustomerRepository customerRepository;
     @Autowired
-    private CustomerDAO customerDAO;
+    private CustomerServiceImpl customerServiceImpl;
 
     @GetMapping("/customers")
     public Collection<Customer> getCustomers() {
 
-        return customerDAO.list();
+        return customerServiceImpl.list();
     }
 
     @GetMapping("/customers/{id}")
     public ResponseEntity getCustomer(@PathVariable("id") Long id) {
 
-        Customer customer = customerDAO.get(id);
+        Customer customer = customerServiceImpl.get(id);
         if (customer == null) {
             return new ResponseEntity("No Customer found for ID " + id, HttpStatus.NOT_FOUND);
         }
@@ -49,7 +47,7 @@ public class CustomerRestController {
     @PostMapping(value = "/customers")
     public ResponseEntity createCustomer(@RequestBody Customer customer) {
 
-        customerDAO.create(customer);
+        customerServiceImpl.create(customer);
 
         return new ResponseEntity(customer, HttpStatus.OK);
     }
@@ -57,7 +55,7 @@ public class CustomerRestController {
     @DeleteMapping("/customers/delete/{id}")
     public ResponseEntity deleteCustomer(@PathVariable Long id) {
 
-        if (!customerDAO.delete(id)) {
+        if (!customerServiceImpl.delete(id)) {
             return new ResponseEntity("No Customer found for ID " + id, HttpStatus.NOT_FOUND);
         }
 
@@ -68,7 +66,7 @@ public class CustomerRestController {
     @PutMapping("/customers/update/{id}")
     public ResponseEntity updateCustomer(@PathVariable Long id, @RequestBody Customer customer) {
 
-        customer = customerDAO.update(customer);
+        customer = customerServiceImpl.update(customer);
 
         if (null == customer) {
             return new ResponseEntity("No Customer found for ID " + id, HttpStatus.NOT_FOUND);

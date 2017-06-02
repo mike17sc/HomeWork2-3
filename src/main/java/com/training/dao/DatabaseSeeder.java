@@ -1,16 +1,11 @@
 package com.training.dao;
 
 import com.training.model.Customer;
-import com.training.model.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
-import java.time.Month;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 
@@ -19,11 +14,9 @@ import java.util.List;
  */
 @Component
 public class DatabaseSeeder implements CommandLineRunner {
-    private CustomerRepository customerRepository;
+
     @Autowired
-    public DatabaseSeeder(CustomerRepository customerRepository){
-        this.customerRepository=customerRepository;
-    }
+    private CustomerRepository customerRepository;
 
     @Override
     public void run(String... strings) throws Exception {

@@ -1,7 +1,7 @@
-package com.training.dao;
+package com.training.service;
 
+import com.training.dao.CustomerRepository;
 import com.training.model.Customer;
-import com.training.model.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -11,7 +11,7 @@ import java.util.Collection;
  * Created by Opleiding on 26/05/2017.
  */
 @Component
-public class CustomerDAO {
+public class CustomerServiceImpl implements CustomerService {
 
 
     /**
@@ -20,7 +20,7 @@ public class CustomerDAO {
      * @return list of customers
      */
     @Autowired
-    private CustomerRepository CustomerRepository;
+    private com.training.dao.CustomerRepository CustomerRepository;
 
     public Collection<Customer> list() {
         Collection<Customer> customers = CustomerRepository.findAll();
@@ -59,12 +59,12 @@ public class CustomerDAO {
      * Update the customer object for given id in dummy database. If customer
      * not exists, returns null
      *
-     * @param id
+     * @param id id of object
      * @param customer
      * @return customer object with id
      */
     public Customer update(Customer customer) {
-        if(get(customer.getId())==null){
+        if (get(customer.getId()) == null) {
             return null;
         }
         return CustomerRepository.save(customer);
